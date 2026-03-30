@@ -1,31 +1,70 @@
-# Example Workflow File
-# This is a placeholder for the actual content of your workflow file.
-
-name: Render CV
-
+name: Render a CV
 on:
   push:
-    branches: [ main ]
-
+    branches:
+      - main
+      - master
+    paths:
+      - "_data/cv.yml"
+      - "assets/rendercv/design.yaml"
+      - "assets/rendercv/locale.yaml"
+      - "assets/rendercv/settings.yaml"
+  workflow_call:
+  workflow_dispatch:
+permissions:
+  contents: write
 jobs:
-  render:
+  rendercv:
+    name: RenderCV
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-
-      - name: Set up Node.js
-        uses: actions/setup-node@v2
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
         with:
-          node-version: '14'
-
-      - name: Install dependencies
-        run: npm install
-
-      - name: Render CV
-        run: npm run rendercv --verbose
-        env:
-          NODE_ENV: production
-
-      - name: Output results
-        run: echo 'Render completed successfully.'
+          python-version: "3.12"
+      - name: Install RenderCV
+        run: |
+          pip install -r requirements.txt
+      - name: RenderCV
+        run: |
+          cv_file=$(find _data  -maxdepth 1 -type f \( -name "cv.yaml" -o -name "cv.yml" \))
+          if [ -z "$cv_file" ]; then
+            echo "No cv.yml file found!"
+            exit 1
+          fi
+          rendercv_dir=$(find assets -maxdepth 1 -type d -name "rendercv")
+          if [ -z "$rendercv_dir" ]; then
+            echo "No RenderCV config directory found!"
+            exit 1
+          fi
+          settings=$(find $rendercv_dir -maxdepth 1 -type f \( -name "settings.yaml" -o -name "settings.yml" \))
+          if [ -z "$settings" ]; then
+            echo "Missing RenderCV config file!"
+            exit 1
+          fi
+          echo "CV file: $cv_file"
+          echo "Settings file: $settings"
+          echo "Running rendercv render..."
+          rendercv render "$cv_file" --settings "$settings" || {
+            echo "ERROR: RenderCV render failed!"
+            echo "=== CV File Content ==="
+            head -30 "$cv_file" || echo "Could not read CV file"
+            echo ""
+            echo "=== Settings File Content ==="
+            cat "$settings" || echo "Could not read settings file"
+            exit 1
+          }
+          # Clean up .typ files only if they exist
+          find assets/rendercv/rendercv_output -name "*.typ" -delete 2>/dev/null || true
+      - name: Upload rendercv_output as an artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: RenderCV Output
+          path: assets/rendercv/rendercv_output
+      - name: Push the changes
+        run: |
+          git config --global user.name "${{ github.actor }}"
+          git config --global user.email "${{ github.actor }}@users.noreply.github.com"
+          git add -A
+          git commit -m "chore: render the latest CV"
+          git push
