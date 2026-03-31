@@ -45,7 +45,6 @@ schedule:
         url: https://github.com/
 
   - week: 4
-    date: Feb 26
     topic: Exploratory Data Analysis
     description: Descriptive statistics, visualization, and pattern discovery.
     materials:
@@ -55,7 +54,6 @@ schedule:
         url: /assets/pdf/example_pdf.pdf
 
   - week: 5
-    date: Mar 4
     topic: Statistical Analysis
     description: Hypothesis testing, confidence intervals, and statistical inference.
     materials:
@@ -65,7 +63,6 @@ schedule:
         url: /assets/pdf/example_pdf.pdf
 
   - week: 6
-    date: Mar 11
     topic: Data Visualization
     description: Principles and tools for effective data visualization.
     materials:
