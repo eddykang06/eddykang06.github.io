@@ -2,7 +2,7 @@
 layout: about
 title: about
 permalink: /
-subtitle: <a href='#'>Harvard College</a>.
+subtitle: <a href='#'>Harvard College</a>
 
 profile:
   align: right
@@ -25,5 +25,5 @@ latest_posts:
   limit: 3 # leave blank to include all the blog posts
 ---
 
-2nd year student at Harvard pursuing a B.A. in Applied Math/Bio and concurrent M.A. in Statistics. Interested in ML, data science, mathematical statistics, computational biology. Currently building regression models to predict bacterial phenotype in response to drug combinations using transcriptional data in the <a href='https://www.vanopijnenlab.com/#the-van-opijnen-lab'>Tim van Opijnen's lab</a> at Boston Children's Hospital.
+2nd year student at Harvard pursuing a B.A. in Applied Math/Bio and concurrent M.A. in Statistics. Interested in ML, data science, mathematical statistics, computational biology. Currently building regression models to predict bacterial phenotype in response to drug combinations using transcriptional data in <a href='https://www.vanopijnenlab.com/#the-van-opijnen-lab'>Tim van Opijnen's lab</a> at Boston Children's Hospital.
 
