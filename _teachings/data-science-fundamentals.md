@@ -15,6 +15,7 @@ schedule:
    description: Revisting the macromolecules of life and their properties
    materials:
      - name: Building Blocks of Life
+       url: /assets/pdf/example_pdf.pdf
         
   - week: 2
     date: March 1
