@@ -461,9 +461,9 @@ ninja.data = [{
           description: "another project with an image 🎉",
           section: "Projects",handler: () => {
               window.location.href = "/projects/9_project/";
-            },},{id: "teachings-data-science-fundamentals",
-          title: 'Data Science Fundamentals',
-          description: "This course covers the foundational aspects of data science, including data collection, cleaning, analysis, and visualization. Students will learn practical skills for working with real-world datasets.",
+            },},{id: "teachings-microbe-mission-science-olympiad",
+          title: 'Microbe Mission (Science Olympiad)',
+          description: "These are lectures I made to prepare high school students for &quot;Microbe Mission&quot;, a Science Olypiad event covering microbiology topics including microbial physiology, genetics, ecology, metabolis, and culture/lab techniques.",
           section: "Teachings",handler: () => {
               window.location.href = "/teachings/data-science-fundamentals/";
             },},{id: "teachings-introduction-to-machine-learning",
