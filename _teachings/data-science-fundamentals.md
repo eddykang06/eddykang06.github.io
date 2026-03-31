@@ -9,13 +9,13 @@ location: Remote
 time: Weekly 1 hour sessions
 course_id: data-science-fundamentals
 schedule:
- - week: 1
-   date: March 1
-   topic: Basic biology review
-   description: Revisting the macromolecules of life and their properties
-   materials:
-     - name: Building Blocks of Life
-       url: /assets/pdf/example_pdf.pdf
+  - week: 1
+    date: March 1
+    topic: Basic biology review
+    description: Revisting the macromolecules of life and their properties
+    materials:
+      - name: Building Blocks of Life
+        url: /assets/pdf/example_pdf.pdf
         
   - week: 2
     date: March 1
