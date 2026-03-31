@@ -49,16 +49,6 @@ schedule:
       - name: Coding Lab
         url: https://github.com/
 
-  - week: 4
-    date: March 1
-    topic: Exploratory Data Analysis
-    description: Descriptive statistics, visualization, and pattern discovery.
-    materials:
-      - name: Lecture Notes
-        url: /assets/pdf/example_pdf.pdf
-      - name: Assignment 2
-        url: /assets/pdf/example_pdf.pdf
-
   - week: 5
     date: March 1
     topic: Statistical Analysis
