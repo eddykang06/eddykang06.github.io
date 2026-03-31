@@ -9,28 +9,33 @@ location: Remote
 time: Weekly 1 hour sessions
 course_id: data-science-fundamentals
 schedule:
-  - week: 1
-    date: Feb 5
-    topic: Introduction to Data Science
-    description: Overview of the data science workflow and key concepts.
+ - week: 1
+    topic: Basic biology review
+    description: Revisting the macromolecules of life and their properties
     materials:
-      - name: Syllabus
-        url: /assets/pdf/example_pdf.pdf
-      - name: Slides
-        url: /assets/pdf/example_pdf.pdf
-
+      - name: Building Blocks of Life
+        
   - week: 2
-    date: Feb 12
-    topic: Data Collection and APIs
-    description: Methods for collecting data through APIs, web scraping, and databases.
+    topic: Intro to microbiology
+    description: Motivations and tour of the bacterial cell.
     materials:
-      - name: Lecture Notes
+      - name: 1. Why Microbes?
         url: /assets/pdf/example_pdf.pdf
-      - name: Assignment 1
+      - name: 2. Tour of the Bacterial Cell: External Structures
+        url: /assets/pdf/example_pdf.pdf
+      - name: 3. Tour of the Bacterial Cell: Internal Structures
         url: /assets/pdf/example_pdf.pdf
 
   - week: 3
-    date: Feb 19
+    topic: Viruses and archaea
+    description: Structure and characteristics of viruses and archaea
+    materials:
+      - name: 4. Viruses
+        url: /assets/pdf/example_pdf.pdf
+      - name: 5. Archaea
+        url: /assets/pdf/example_pdf.pdf
+
+  - week: 4
     topic: Data Cleaning and Preprocessing
     description: Techniques for handling missing values, outliers, and data transformation.
     materials:
@@ -79,19 +84,3 @@ This course provides a comprehensive introduction to data science principles and
 - Develop skills in data visualization and communication
 - Apply statistical methods to derive insights from data
 
-## Prerequisites
-
-- Basic programming knowledge (preferably in Python)
-- Introductory statistics
-- Comfort with basic algebra
-
-## Textbooks
-
-- "Python for Data Analysis" by Wes McKinney
-- "Data Science from Scratch" by Joel Grus
-
-## Grading
-
-- Assignments: 50%
-- Project: 40%
-- Participation: 10%
