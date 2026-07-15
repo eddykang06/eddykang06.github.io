@@ -61,6 +61,24 @@
 }
 
 @layer base {
+	.header-logo {
+		transition: filter 180ms ease;
+		filter: none;
+		background: transparent;
+		padding: 0;
+		border-radius: 0;
+	}
+
+	html[data-theme="dark"] .header-logo {
+		filter: invert(1);
+		background: transparent;
+	}
+
+	html[data-theme="light"] .header-logo {
+		filter: none;
+		background: transparent;
+	}
+
 	html {
 		color-scheme: light dark;
 		accent-color: var(--color-accent);
