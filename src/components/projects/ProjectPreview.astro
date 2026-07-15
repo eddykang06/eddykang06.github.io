@@ -1,0 +1,24 @@
+---
+import type { CollectionEntry } from "astro:content";
+
+interface Props {
+	project: CollectionEntry<"project">;
+}
+
+const { project } = Astro.props;
+---
+
+<div class="border-global-text/10 bg-global-text/5 rounded-md border p-4">
+	<div class="flex flex-wrap items-center justify-between gap-2">
+		<h3 class="title mb-0 text-base">
+			<a class="cactus-link" href={`/projects/${project.id}/`}>
+				{project.data.title}
+			</a>
+		</h3>
+		{project.data.featured && <span class="text-accent text-sm">Featured</span>}
+	</div>
+	<p class="mt-2 mb-0 text-sm">{project.data.description}</p>
+	<a class="cactus-link mt-3 inline-block text-sm" href={`/projects/${project.id}/`}>
+		Read more →
+	</a>
+</div>

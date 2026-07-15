@@ -48,6 +48,19 @@ const note = defineCollection({
 	}),
 });
 
+const project = defineCollection({
+	loader: glob({ base: "./content/projects", pattern: "**/*.{md,mdx}" }),
+	schema: baseSchema.extend({
+		description: z.string(),
+		draft: z.boolean().default(false),
+		featured: z.boolean().default(false),
+		publishDate: z
+			.string()
+			.or(z.date())
+			.transform((val) => new Date(val)),
+	}),
+});
+
 const tag = defineCollection({
 	loader: glob({ base: "./content/tags", pattern: "**/*.{md,mdx}" }),
 	schema: z.object({
@@ -56,4 +69,4 @@ const tag = defineCollection({
 	}),
 });
 
-export const collections = { post, note, tag };
+export const collections = { post, note, project, tag };

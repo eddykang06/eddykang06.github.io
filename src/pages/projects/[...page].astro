@@ -1,0 +1,51 @@
+---
+import type { CollectionEntry } from "astro:content";
+import type { GetStaticPaths, Page } from "astro";
+import { getCollection } from "astro:content";
+import PageLayout from "@/layouts/Base.astro";
+import { collectionDateSort } from "@/utils/date";
+
+export const getStaticPaths = (async ({ paginate }) => {
+	const allProjects = await getCollection("project", (entry) => {
+		return import.meta.env.PROD ? !entry.data.draft : true;
+	});
+	return paginate(allProjects.sort(collectionDateSort), {
+		pageSize: 10,
+	});
+}) satisfies GetStaticPaths;
+
+interface Props {
+	page: Page<CollectionEntry<"project">>;
+}
+
+const { page } = Astro.props as Props;
+const projects = page.data as CollectionEntry<"project">[];
+
+const meta = {
+	description: "A showcase of my selected projects and what I worked on.",
+	title: "Projects",
+};
+---
+
+<PageLayout meta={meta}>
+	<h1 class="title mb-8">Projects</h1>
+	<ul class="space-y-4" role="list">
+		{
+			projects.map((project) => (
+				<li>
+					<div class="border-global-text/10 bg-global-text/5 rounded-md border p-4">
+						<div class="flex flex-wrap items-center justify-between gap-2">
+							<h2 class="title mb-0 text-base">
+								<a class="cactus-link" href={`/projects/${project.id}/`}>
+									{project.data.title}
+								</a>
+							</h2>
+							{project.data.featured && <span class="text-accent text-sm">Featured</span>}
+						</div>
+						<p class="mt-2 mb-0 text-sm">{project.data.description}</p>
+					</div>
+				</li>
+			))
+		}
+	</ul>
+</PageLayout>
