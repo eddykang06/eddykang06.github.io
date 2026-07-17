@@ -1,4 +1,5 @@
 ---
+import { Icon } from "astro-icon/components";
 import PageLayout from "@/layouts/Base.astro";
 
 const meta = {
@@ -20,25 +21,52 @@ const educationEntries = [
 
 const experienceEntries = [
 	{
-		role: "Research & Project Building",
-		institution: "Insert institution/company",
-		period: "Present",
+		role: "Undergraduate Researcher",
+		institution: "Boston Children's Hospital (van Opijnen Lab)",
+		period: "Jan 2025 – Aug 2026",
 		details: [
 			"Building projects at the intersection of machine learning and biology",
 			"Exploring generative approaches for scientific and biological problems",
 		],
 	},
+	{
+		role: "Undegraduate Researcher",
+		institution: "Broad Institute of MIT and Harvard (Bhattacharyya Lab)",
+		period: "Sep 2025 – Dec 2025",
+		details: [
+			"Building projects at the intersection of machine learning and biology",
+			"Exploring generative approaches for scientific and biological problems",
+		],		
+	},
+	{
+		role: "Bioinformatics Intern",
+		institution: "Oklahoma Medical Research Foundation (Miller Lab)",
+		period: "Jun 2025 – Jul 2025",
+		details: [
+			"Building projects at the intersection of machine learning and biology",
+			"Exploring generative approaches for scientific and biological problems",
+		],		
+	}
 ];
 
 const teachingEntries = [
 	{
-		role: "Teaching & Communication",
-		period: "Present",
+		role: "Course Assistant",
+		institution: "Harvard College - Integrated Science",
+		period: "Jan 2026 – May 2026",
 		details: [
-			"Interested in communicating technical ideas clearly and accessibly",
-			"Enjoy helping others learn through thoughtful explanations and examples",
+			"Hosted office hours for computational biology, statistics, dynamical systems, linear algebra, and molecular biology.",
 		],
 	},
+		{
+		role: "Science Olympiad Instructor",
+		institution: "Casady School - Microbe Mission, Designer Genes",
+		period: "Oct 2024 – Dec 2025",
+		details: [
+			"Designed and taught 45+ lectures on molecular genetics, microbial physiology, and biological lab techniques to 6 high schoolers.",
+			"Coached team to first-place at the regional and state levels, qualifying for nationals.",
+		],
+	}
 ];
 ---
 
@@ -75,20 +103,31 @@ const teachingEntries = [
 			<div class="space-y-3">
 				{
 					experienceEntries.map((entry) => (
-						<article class="border-muted/60 bg-global-bg/70 not-prose rounded-2xl border px-4 pt-3 pb-4 shadow-sm transition duration-200 hover:-translate-y-0.5 hover:shadow-md">
-							<div class="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between">
+						<details class="border-muted/60 bg-global-bg/70 group not-prose rounded-2xl border shadow-sm transition duration-200 hover:-translate-y-0.5 hover:shadow-md">
+							<summary class="flex cursor-pointer list-none items-start justify-between gap-4 px-4 py-3 [&::-webkit-details-marker]:hidden">
 								<div>
-									<h3 class="text-accent mt-0 mb-1 text-lg font-semibold">{entry.role}</h3>								<p class="text-muted mt-1 text-sm">{entry.institution}</p>								</div>
-								<span class="text-muted border-muted/50 inline-flex items-center rounded-full border px-3 py-1 text-sm">
-									{entry.period}
-								</span>
+									<h3 class="text-accent m-0 text-lg font-semibold">{entry.role}</h3>
+									<p class="text-muted mt-1 mb-0 text-sm">{entry.institution}</p>
+								</div>
+								<div class="flex shrink-0 items-center gap-2">
+									<span class="text-muted border-muted/50 inline-flex items-center rounded-full border px-3 py-1 text-sm">
+										{entry.period}
+									</span>
+									<Icon
+										aria-hidden="true"
+										class="text-muted h-5 w-5 transition-transform group-open:rotate-180"
+										name="mdi:chevron-down"
+									/>
+								</div>
+							</summary>
+							<div class="border-muted/60 border-t px-4 pt-3 pb-4">
+								<ul class="m-0 list-disc space-y-2 pl-5">
+									{entry.details.map((detail) => (
+										<li class="text-sm leading-6">{detail}</li>
+									))}
+								</ul>
 							</div>
-							<ul class="mt-3 space-y-2">
-								{entry.details.map((detail) => (
-									<li class="text-sm leading-6">{detail}</li>
-								))}
-							</ul>
-						</article>
+						</details>
 					))
 				}
 			</div>
@@ -99,21 +138,31 @@ const teachingEntries = [
 			<div class="space-y-3">
 				{
 					teachingEntries.map((entry) => (
-						<article class="border-muted/60 bg-global-bg/70 not-prose rounded-2xl border px-4 pt-3 pb-4 shadow-sm transition duration-200 hover:-translate-y-0.5 hover:shadow-md">
-							<div class="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between">
+						<details class="border-muted/60 bg-global-bg/70 group not-prose rounded-2xl border shadow-sm transition duration-200 hover:-translate-y-0.5 hover:shadow-md">
+							<summary class="flex cursor-pointer list-none items-start justify-between gap-4 px-4 py-3 [&::-webkit-details-marker]:hidden">
 								<div>
-									<h3 class="text-accent mt-0 mb-1 text-lg font-semibold">{entry.role}</h3>
+									<h3 class="text-accent m-0 text-lg font-semibold">{entry.role}</h3>
+									<p class="text-muted mt-1 mb-0 text-sm">{entry.institution}</p>
 								</div>
-								<span class="text-muted border-muted/50 inline-flex items-center rounded-full border px-3 py-1 text-sm">
-									{entry.period}
-								</span>
+								<div class="flex shrink-0 items-center gap-2">
+									<span class="text-muted border-muted/50 inline-flex items-center rounded-full border px-3 py-1 text-sm">
+										{entry.period}
+									</span>
+									<Icon
+										aria-hidden="true"
+										class="text-muted h-5 w-5 transition-transform group-open:rotate-180"
+										name="mdi:chevron-down"
+									/>
+								</div>
+							</summary>
+							<div class="border-muted/60 border-t px-4 pt-3 pb-4">
+								<ul class="m-0 list-disc space-y-2 pl-5">
+									{entry.details.map((detail) => (
+										<li class="text-sm leading-6">{detail}</li>
+									))}
+								</ul>
 							</div>
-							<ul class="mt-3 space-y-2">
-								{entry.details.map((detail) => (
-									<li class="text-sm leading-6">{detail}</li>
-								))}
-							</ul>
-						</article>
+						</details>
 					))
 				}
 			</div>
