@@ -10,11 +10,12 @@ const meta = {
 const educationEntries = [
 	{
 		institution: "Harvard University",
+		logo: "/logos/harvard.svg",
 		period: "Expected May 2028",
+		degree: "Concurrent M.A. Statistics + B.A. Applied Mathematics",
 		details: [
-			"Concurrent Degrees: M.A. Statistics; B.A. Applied Mathematics: Biology",
-			"Minor in Computer Science (GPA 3.98)",
-			"Relevant Coursework (* denotes graduate level): Machine Learning*, Linear Models*, Probability*, Diffusion Models, Deep Learning for Molecular Biology, Algorithms",
+			"Minor in Computer Science.",
+			"Relevant Coursework (* = graduate): Machine Learning*, Linear Models*, Probability*, Diffusion Models, Deep Learning for Molecular Biology, Algorithms.",
 		],
 	},
 ];
@@ -22,48 +23,47 @@ const educationEntries = [
 const experienceEntries = [
 	{
 		role: "Undergraduate Researcher",
-		institution: "Boston Children's Hospital (van Opijnen Lab)",
-		period: "Jan 2025 – Aug 2026",
-		details: [
-			"Coming soon."
-		],
+		institution: "Boston Chidren's Hospital (van Opijnen Lab)",
+		logo: "/logos/bch.jpg",
+		period: "Jan 2026 – Aug 2026",
+		details: ["Coming soon."],
 	},
 	{
-		role: "Undegraduate Researcher",
-		institution: "Broad Institute of MIT and Harvard (Bhattacharyya Lab)",
+		role: "Undergraduate Researcher",
+		institution: "Broad Institute (Bhattacharyya Lab)",
+		logo: "/logos/broad.png",
 		period: "Sep 2025 – Dec 2025",
-		details: [
-			"Coming soon."
-		],		
+		details: ["Coming soon."],
 	},
 	{
 		role: "Bioinformatics Intern",
 		institution: "Oklahoma Medical Research Foundation (Miller Lab)",
+		logo: "/logos/omrf.jpg",
 		period: "Jun 2025 – Jul 2025",
-		details: [
-			"Coming soon."
-		],		
-	}
+		details: ["Coming soon."],
+	},
 ];
 
 const teachingEntries = [
 	{
 		role: "Course Assistant",
 		institution: "Harvard College - Integrated Science",
+		logo: "/logos/harvard.svg",
 		period: "Jan 2026 – May 2026",
 		details: [
 			"Hosted office hours for computational biology, statistics, dynamical systems, linear algebra, and molecular biology.",
 		],
 	},
-		{
+	{
 		role: "Science Olympiad Instructor",
 		institution: "Casady School - Microbe Mission, Designer Genes",
+		logo: "/logos/casady.png",
 		period: "Oct 2024 – Dec 2025",
 		details: [
 			"Designed and taught 45+ lectures on molecular genetics, microbial physiology, and biological lab techniques to 6 high schoolers.",
 			"Coached team to first-place at the regional and state levels, qualifying for nationals.",
 		],
-	}
+	},
 ];
 ---
 
@@ -75,21 +75,42 @@ const teachingEntries = [
 			<div class="space-y-3">
 				{
 					educationEntries.map((entry) => (
-						<article class="border-muted/60 bg-global-bg/70 not-prose rounded-2xl border px-4 pt-3 pb-4 shadow-sm transition duration-200 hover:-translate-y-0.5 hover:shadow-md">
-							<div class="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between">
-								<div>
-									<h3 class="text-accent mt-0 mb-1 text-lg font-semibold">{entry.institution}</h3>
+						<details class="border-muted/60 bg-global-bg/70 group not-prose rounded-2xl border shadow-sm transition duration-200 hover:-translate-y-0.5 hover:shadow-md">
+							<summary class="flex cursor-pointer list-none items-start justify-between gap-4 px-4 py-3 [&::-webkit-details-marker]:hidden">
+								<div class="flex min-w-0 items-center gap-3">
+									{entry.logo && (
+										<img
+											alt=""
+											class="h-10 w-10 shrink-0 object-contain"
+											decoding="async"
+											loading="lazy"
+											src={entry.logo}
+										/>
+									)}
+									<div class="min-w-0">
+										<h3 class="text-accent m-0 text-lg font-semibold">{entry.institution}</h3>
+										<p class="text-muted mt-1 mb-0 text-sm">{entry.degree}</p>
+									</div>
 								</div>
-								<span class="text-muted border-muted/50 inline-flex items-center rounded-full border px-3 py-1 text-sm">
-									{entry.period}
-								</span>
+								<div class="flex shrink-0 items-center gap-2">
+									<span class="text-muted border-muted/50 inline-flex items-center rounded-full border px-3 py-1 text-sm">
+										{entry.period}
+									</span>
+									<Icon
+										aria-hidden="true"
+										class="text-muted h-5 w-5 transition-transform group-open:rotate-180"
+										name="mdi:chevron-down"
+									/>
+								</div>
+							</summary>
+							<div class="border-muted/60 border-t px-4 pt-3 pb-4">
+								<ul class="m-0 list-disc space-y-2 pl-5">
+									{entry.details.map((detail) => (
+										<li class="text-sm leading-6">{detail}</li>
+									))}
+								</ul>
 							</div>
-							<ul class="mt-3 space-y-2">
-								{entry.details.map((detail) => (
-									<li class="text-sm leading-6">{detail}</li>
-								))}
-							</ul>
-						</article>
+						</details>
 					))
 				}
 			</div>
@@ -102,9 +123,20 @@ const teachingEntries = [
 					experienceEntries.map((entry) => (
 						<details class="border-muted/60 bg-global-bg/70 group not-prose rounded-2xl border shadow-sm transition duration-200 hover:-translate-y-0.5 hover:shadow-md">
 							<summary class="flex cursor-pointer list-none items-start justify-between gap-4 px-4 py-3 [&::-webkit-details-marker]:hidden">
-								<div>
-									<h3 class="text-accent m-0 text-lg font-semibold">{entry.role}</h3>
-									<p class="text-muted mt-1 mb-0 text-sm">{entry.institution}</p>
+								<div class="flex min-w-0 items-center gap-3">
+									{entry.logo && (
+										<img
+											alt=""
+											class="h-10 w-10 shrink-0 object-contain"
+											decoding="async"
+											loading="lazy"
+											src={entry.logo}
+										/>
+									)}
+									<div class="min-w-0">
+										<h3 class="text-accent m-0 text-lg font-semibold">{entry.role}</h3>
+										<p class="text-muted mt-1 mb-0 text-sm">{entry.institution}</p>
+									</div>
 								</div>
 								<div class="flex shrink-0 items-center gap-2">
 									<span class="text-muted border-muted/50 inline-flex items-center rounded-full border px-3 py-1 text-sm">
@@ -137,9 +169,20 @@ const teachingEntries = [
 					teachingEntries.map((entry) => (
 						<details class="border-muted/60 bg-global-bg/70 group not-prose rounded-2xl border shadow-sm transition duration-200 hover:-translate-y-0.5 hover:shadow-md">
 							<summary class="flex cursor-pointer list-none items-start justify-between gap-4 px-4 py-3 [&::-webkit-details-marker]:hidden">
-								<div>
-									<h3 class="text-accent m-0 text-lg font-semibold">{entry.role}</h3>
-									<p class="text-muted mt-1 mb-0 text-sm">{entry.institution}</p>
+								<div class="flex min-w-0 items-center gap-3">
+									{entry.logo && (
+										<img
+											alt=""
+											class="h-10 w-10 shrink-0 object-contain"
+											decoding="async"
+											loading="lazy"
+											src={entry.logo}
+										/>
+									)}
+									<div class="min-w-0">
+										<h3 class="text-accent m-0 text-lg font-semibold">{entry.role}</h3>
+										<p class="text-muted mt-1 mb-0 text-sm">{entry.institution}</p>
+									</div>
 								</div>
 								<div class="flex shrink-0 items-center gap-2">
 									<span class="text-muted border-muted/50 inline-flex items-center rounded-full border px-3 py-1 text-sm">
