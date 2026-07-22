@@ -31,6 +31,18 @@ export const linkGroups: LinkGroup[] = [
 		{
 			title: "Sinfonia Concertante - Mozart (Sitkovetsky, Ridout)",
 			url: "https://www.youtube.com/watch?v=-JAAQqVnpR8&list=RD-JAAQqVnpR8&start_radio=1&t=1543s"
+		},
+		{
+			title: "Violin Sonata No.1: Siciliano - Bach (Malov)",
+			url: "https://www.youtube.com/watch?v=GutyYYcEXPA&list=RDGutyYYcEXPA&start_radio=1"
+		},
+		{
+			title: "Violin Concerto - Sibelius (Haendel)",
+			url: "https://www.youtube.com/watch?v=VYBQyOOED8k&list=RDVYBQyOOED8k&start_radio=1"
+		},
+		{
+			title: "Gran Duo - Bottesini (Ibragimova, Ibgragimov)",
+			url: "https://www.youtube.com/watch?v=lm8W8jMtQyA&list=RDlm8W8jMtQyA&start_radio=1"
 		}
 	],
 	},
