@@ -41,7 +41,7 @@ export const linkGroups: LinkGroup[] = [
 			url: "https://www.youtube.com/watch?v=VYBQyOOED8k&list=RDVYBQyOOED8k&start_radio=1"
 		},
 		{
-			title: "Gran Duo - Bottesini (Ibragimova, Ibgragimov)",
+			title: "Gran Duo - Bottesini (Ibragimova, Ibragimov)",
 			url: "https://www.youtube.com/watch?v=lm8W8jMtQyA&list=RDlm8W8jMtQyA&start_radio=1"
 		}
 	],
