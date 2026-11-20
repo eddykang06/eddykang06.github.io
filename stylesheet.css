@@ -360,6 +360,10 @@ h2 {
 }
 
 /* Recent News (scrollable box) */
+.news {
+  padding: 2.5%;
+}
+
 .news-scroll {
   margin-top: 10px;
   max-height: 260px;
@@ -405,6 +409,11 @@ h2 {
   font-size: 13px;
   color: #333;
   line-height: 1.5;
+}
+
+.news-text a,
+.news-text strong {
+  font-size: 14px;
 }
 
 @media (max-width: 640px) {
