@@ -17,4 +17,3 @@ To preview locally: `pip install markdown`, run `python build.py`, open `_site/i
 This website is built on **[Jon Barron](https://jonbarron.info/)'s** academic website template.
 The page layout, `stylesheet.css`, and thumbnail hover script come from his source code at
 [github.com/jonbarron/jonbarron.github.io](https://github.com/jonbarron/jonbarron.github.io).
-Thank you, Jon, for making it freely available.
