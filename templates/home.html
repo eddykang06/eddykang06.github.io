@@ -106,7 +106,7 @@
         link.appendChild(canvas);
         var ctx = canvas.getContext('2d');
 
-        var GRAIN = 48;  // noise resolution; lower = chunkier, more cartoony
+        var GRAIN = 64;  // noise resolution; lower = chunkier, more cartoony
         var noise = document.createElement('canvas');
         noise.width = noise.height = GRAIN;
         var nctx = noise.getContext('2d');
@@ -116,9 +116,11 @@
         function fillNoise() {
           var d = pixels.data;
           for (var i = 0; i < d.length; i += 4) {
-            d[i] = Math.random() * 256;
-            d[i + 1] = Math.random() * 256;
-            d[i + 2] = Math.random() * 256;
+            // Soft, mostly gray static with a faint color tint.
+            var v = 128 + (Math.random() - 0.5) * 140;
+            d[i] = v + (Math.random() - 0.5) * 30;
+            d[i + 1] = v + (Math.random() - 0.5) * 30;
+            d[i + 2] = v + (Math.random() - 0.5) * 30;
             d[i + 3] = 255;
           }
           nctx.putImageData(pixels, 0, 0);
@@ -133,7 +135,7 @@
           canvas.style.height = img.offsetHeight + 'px';
           var w = canvas.width = 256;
           var h = canvas.height = Math.round(256 * img.offsetHeight / img.offsetWidth);
-          var start = null, duration = 1400;
+          var start = null, duration = 2400, lastNoise = -Infinity;
           canvas.style.opacity = 1;
 
           function frame(now) {
@@ -142,12 +144,15 @@
             var level = Math.cos(p * Math.PI / 2);  // 1 = pure noise, 0 = clean photo
             ctx.fillStyle = '#808080';
             ctx.fillRect(0, 0, w, h);
-            ctx.filter = 'blur(' + (8 * level).toFixed(2) + 'px)';
+            ctx.filter = 'blur(' + (4 * level).toFixed(2) + 'px)';
             ctx.drawImage(img, 0, 0, w, h);
             ctx.filter = 'none';
-            fillNoise();
+            if (now - lastNoise > 120) {  // new static ~8 times a second, not every frame
+              fillNoise();
+              lastNoise = now;
+            }
             ctx.imageSmoothingEnabled = false;
-            ctx.globalAlpha = level;
+            ctx.globalAlpha = 0.85 * level;
             ctx.drawImage(noise, 0, 0, w, h);
             ctx.globalAlpha = 1;
             if (p < 1) {
