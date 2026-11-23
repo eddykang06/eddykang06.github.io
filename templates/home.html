@@ -90,5 +90,83 @@
         }, {passive: true});
       });
     </script>
+
+    <script>
+      // Photo "denoising" animation: on hover (or tap on touch screens) the photo
+      // starts as colorful static and is gradually denoised back into the photo,
+      // loosely like a diffusion model's sampler. Skipped for reduced-motion users.
+      (function() {
+        var link = document.querySelector('.bio-photo a');
+        var img = link && link.querySelector('img');
+        if (!img || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+        var canvas = document.createElement('canvas');
+        canvas.className = 'denoise';
+        canvas.setAttribute('aria-hidden', 'true');
+        link.appendChild(canvas);
+        var ctx = canvas.getContext('2d');
+
+        var GRAIN = 48;  // noise resolution; lower = chunkier, more cartoony
+        var noise = document.createElement('canvas');
+        noise.width = noise.height = GRAIN;
+        var nctx = noise.getContext('2d');
+        var pixels = nctx.createImageData(GRAIN, GRAIN);
+        var running = false;
+
+        function fillNoise() {
+          var d = pixels.data;
+          for (var i = 0; i < d.length; i += 4) {
+            d[i] = Math.random() * 256;
+            d[i + 1] = Math.random() * 256;
+            d[i + 2] = Math.random() * 256;
+            d[i + 3] = 255;
+          }
+          nctx.putImageData(pixels, 0, 0);
+        }
+
+        function play() {
+          if (running || !img.complete || !img.naturalWidth) return;
+          running = true;
+          canvas.style.left = img.offsetLeft + 'px';
+          canvas.style.top = img.offsetTop + 'px';
+          canvas.style.width = img.offsetWidth + 'px';
+          canvas.style.height = img.offsetHeight + 'px';
+          var w = canvas.width = 256;
+          var h = canvas.height = Math.round(256 * img.offsetHeight / img.offsetWidth);
+          var start = null, duration = 1400;
+          canvas.style.opacity = 1;
+
+          function frame(now) {
+            if (start === null) start = now;
+            var p = Math.min((now - start) / duration, 1);
+            var level = Math.cos(p * Math.PI / 2);  // 1 = pure noise, 0 = clean photo
+            ctx.fillStyle = '#808080';
+            ctx.fillRect(0, 0, w, h);
+            ctx.filter = 'blur(' + (8 * level).toFixed(2) + 'px)';
+            ctx.drawImage(img, 0, 0, w, h);
+            ctx.filter = 'none';
+            fillNoise();
+            ctx.imageSmoothingEnabled = false;
+            ctx.globalAlpha = level;
+            ctx.drawImage(noise, 0, 0, w, h);
+            ctx.globalAlpha = 1;
+            if (p < 1) {
+              requestAnimationFrame(frame);
+            } else {
+              canvas.style.opacity = 0;
+              running = false;
+            }
+          }
+          requestAnimationFrame(frame);
+        }
+
+        if (window.matchMedia('(hover: hover)').matches) {
+          link.addEventListener('mouseenter', play);
+        } else {
+          // Touch screens: a tap plays the animation instead of opening the full-size photo.
+          link.addEventListener('click', function(e) { e.preventDefault(); play(); });
+        }
+      })();
+    </script>
   </body>
 </html>

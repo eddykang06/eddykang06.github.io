@@ -220,6 +220,20 @@ h2 {
   padding: 2.5%;
 }
 
+/* Denoising animation over the photo (see the script in templates/home.html). */
+.bio-photo a {
+  display: block;
+  position: relative;
+}
+
+.denoise {
+  position: absolute;
+  border-radius: 50%;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s ease;
+}
+
 .bio-photo img {
   width: 100%;
   height: auto;
