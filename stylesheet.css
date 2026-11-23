@@ -239,7 +239,7 @@ h2 {
   text-align: center;
   font-size: 12px;
   font-style: italic;
-  color: var(--text-muted);
+  color: var(--text);
 }
 
 /* Say "tap" on touch screens and "hover" everywhere else. */
