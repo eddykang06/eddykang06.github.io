@@ -226,10 +226,6 @@ h2 {
   display: block;
   object-fit: cover;
   border-radius: 50%;
-  /* Photo ring: thin blue ring with a small white gap around the photo. */
-  padding: 4px;
-  border: 2px solid var(--accent);
-  background: var(--bg);
 }
 
 .name {
