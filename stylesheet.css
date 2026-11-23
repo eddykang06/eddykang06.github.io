@@ -16,10 +16,10 @@
                               sidebar TOC, eq numbers, hover # anchors, Copy
                               buttons, and code comments. Never use for main
                               content or paper metadata.
-     --accent        #2e7d4f  Clickable links & active navigation ONLY. Never
+     --accent        #1772d0  Clickable links & active navigation ONLY. Never
                               use for non-clickable elements or code keywords.
-     --accent-hover  #e08a1e  Hover/focus state for links & interactive chrome.
-     --accent-soft   #eef6f0  Soft green tint for hovered news rows.
+     --accent-hover  #f09228  Hover/focus state for links & interactive chrome.
+     --accent-soft   #eef4fc  Soft blue tint for hovered news rows.
      --highlight-bg  #ffffd0  Highlighted paper rows & :target jump highlights.
      (Homepage-only accents: award badges #d40000 / #c64848, Miscellanea boxes.)
 
@@ -142,9 +142,9 @@
   --border: #e4e4e0;
   --text: #000000;
   --text-muted: #555555;
-  --accent: #2e7d4f;
-  --accent-hover: #e08a1e;
-  --accent-soft: #eef6f0;
+  --accent: #1772d0;
+  --accent-hover: #f09228;
+  --accent-soft: #eef4fc;
   --highlight-bg: #ffffd0;
   --font-sans: 'Lato', Helvetica, Arial, sans-serif;
   --font-mono: 'Source Code Pro', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
