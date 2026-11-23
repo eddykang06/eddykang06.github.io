@@ -187,6 +187,19 @@ a:hover {
   background-size: 100% 1.5px;
 }
 
+/* Header links: small icon before each label. */
+.bio-links a {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.icon {
+  width: 14px;
+  height: 14px;
+  flex-shrink: 0;
+}
+
 /* No underline under the profile photo link. */
 .bio-photo a {
   background-image: none;
