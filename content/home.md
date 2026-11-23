@@ -10,7 +10,6 @@ I’m always open to discussion regarding my research interests!
 - [LinkedIn](https://www.linkedin.com/in/eddy-kang/)
 - [GitHub](https://github.com/eddykang06)
 - [Blog](blog/)
-- [Misc](misc/)
 
 # Research
 I’m interested in the foundations of diffusion and flow-based generative models and their applications to science, language, and robotics.
