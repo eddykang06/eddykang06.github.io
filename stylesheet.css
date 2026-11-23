@@ -16,9 +16,10 @@
                               sidebar TOC, eq numbers, hover # anchors, Copy
                               buttons, and code comments. Never use for main
                               content or paper metadata.
-     --accent        #1772d0  Clickable links & active navigation ONLY. Never
+     --accent        #2e7d4f  Clickable links & active navigation ONLY. Never
                               use for non-clickable elements or code keywords.
-     --accent-hover  #f09228  Hover/focus state for links & interactive chrome.
+     --accent-hover  #e08a1e  Hover/focus state for links & interactive chrome.
+     --accent-soft   #eef6f0  Soft green tint for hovered news rows.
      --highlight-bg  #ffffd0  Highlighted paper rows & :target jump highlights.
      (Homepage-only accents: award badges #d40000 / #c64848, Miscellanea boxes.)
 
@@ -141,8 +142,9 @@
   --border: #e4e4e0;
   --text: #000000;
   --text-muted: #555555;
-  --accent: #1772d0;
-  --accent-hover: #f09228;
+  --accent: #2e7d4f;
+  --accent-hover: #e08a1e;
+  --accent-soft: #eef6f0;
   --highlight-bg: #ffffd0;
   --font-sans: 'Lato', Helvetica, Arial, sans-serif;
   --font-mono: 'Source Code Pro', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
@@ -172,12 +174,24 @@ body {
 a {
   color: var(--accent);
   text-decoration: none;
+  /* Animated underline: a 1.5px line that sweeps in from the left on hover. */
+  background-image: linear-gradient(currentColor, currentColor);
+  background-position: 0 100%;
+  background-repeat: no-repeat;
+  background-size: 0% 1.5px;
+  transition: color 0.2s ease, background-size 0.25s ease;
 }
 
 a:focus,
 a:hover {
   color: var(--accent-hover);
   text-decoration: none;
+  background-size: 100% 1.5px;
+}
+
+/* No underline under the profile photo link. */
+.bio-photo a {
+  background-image: none;
 }
 
 h2 {
@@ -368,7 +382,7 @@ h2 {
   margin-top: 10px;
   max-height: 260px;
   overflow-y: auto;
-  border-left: 3px solid #2e8b57;
+  border-left: 3px solid var(--accent);
   padding-left: 16px;
 }
 
@@ -388,8 +402,15 @@ h2 {
 .news-item {
   display: flex;
   gap: 12px;
-  padding: 6px 0;
+  padding: 6px 8px;
   align-items: baseline;
+  border-radius: 4px;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.news-item:hover {
+  background-color: var(--accent-soft);
+  transform: translateX(4px);
 }
 
 .news-item + .news-item {
@@ -398,7 +419,7 @@ h2 {
 
 .news-date {
   font-weight: 700;
-  color: #1a6b1a;
+  color: var(--accent);
   white-space: nowrap;
   font-size: 13px;
   min-width: 72px;
