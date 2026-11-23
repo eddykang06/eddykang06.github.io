@@ -106,7 +106,7 @@
         link.appendChild(canvas);
         var ctx = canvas.getContext('2d');
 
-        var GRAIN = 96;  // noise resolution; lower = chunkier, more cartoony
+        var GRAIN = 144;  // noise resolution; lower = chunkier, more cartoony
         var noise = document.createElement('canvas');
         noise.width = noise.height = GRAIN;
         var nctx = noise.getContext('2d');
@@ -133,7 +133,7 @@
           canvas.style.height = img.offsetHeight + 'px';
           var w = canvas.width = 256;
           var h = canvas.height = Math.round(256 * img.offsetHeight / img.offsetWidth);
-          var start = null, duration = 1800, lastNoise = -Infinity;
+          var start = null, duration = 1400, lastNoise = -Infinity;
           canvas.style.opacity = 1;
 
           function frame(now) {
