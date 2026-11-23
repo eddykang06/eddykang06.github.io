@@ -19,7 +19,6 @@
      --accent        #1772d0  Clickable links & active navigation ONLY. Never
                               use for non-clickable elements or code keywords.
      --accent-hover  #f09228  Hover/focus state for links & interactive chrome.
-     --accent-soft   #eef4fc  Soft blue tint for hovered news rows.
      --highlight-bg  #ffffd0  Highlighted paper rows & :target jump highlights.
      (Homepage-only accents: award badges #d40000 / #c64848, Miscellanea boxes.)
 
@@ -144,7 +143,6 @@
   --text-muted: #555555;
   --accent: #1772d0;
   --accent-hover: #f09228;
-  --accent-soft: #eef4fc;
   --highlight-bg: #ffffd0;
   --font-sans: 'Lato', Helvetica, Arial, sans-serif;
   --font-mono: 'Source Code Pro', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
@@ -402,15 +400,8 @@ h2 {
 .news-item {
   display: flex;
   gap: 12px;
-  padding: 6px 8px;
+  padding: 6px 0;
   align-items: baseline;
-  border-radius: 4px;
-  transition: background-color 0.2s ease, transform 0.2s ease;
-}
-
-.news-item:hover {
-  background-color: var(--accent-soft);
-  transform: translateX(4px);
 }
 
 .news-item + .news-item {
