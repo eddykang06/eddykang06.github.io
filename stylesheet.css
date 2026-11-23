@@ -19,8 +19,6 @@
      --accent        #1772d0  Clickable links & active navigation ONLY. Never
                               use for non-clickable elements or code keywords.
      --accent-hover  #f09228  Hover/focus state for links & interactive chrome.
-     --accent-end    #6a3fd8  Far end of the link text gradient (blue -> indigo).
-     --accent-hover-end #d9480f  Far end of the hover gradient (orange -> red-orange).
      --highlight-bg  #ffffd0  Highlighted paper rows & :target jump highlights.
      (Homepage-only accents: award badges #d40000 / #c64848, Miscellanea boxes.)
 
@@ -145,8 +143,6 @@
   --text-muted: #555555;
   --accent: #1772d0;
   --accent-hover: #f09228;
-  --accent-end: #6a3fd8;
-  --accent-hover-end: #d9480f;
   --highlight-bg: #ffffd0;
   --font-sans: 'Lato', Helvetica, Arial, sans-serif;
   --font-mono: 'Source Code Pro', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
@@ -194,34 +190,6 @@ a:hover {
 /* No underline under the profile photo link. */
 .bio-photo a {
   background-image: none;
-}
-
-/* Gradient link text. Layer 1 is the text gradient (clipped to the letters),
-   layer 2 is the sweeping underline. Browsers that can't clip one layer to
-   text keep the solid-color links above. */
-@supports (background-clip: text, border-box) {
-  a {
-    background-image:
-      linear-gradient(90deg, var(--accent), var(--accent-end)),
-      linear-gradient(90deg, var(--accent), var(--accent-end));
-    background-position: 0 0, 0 100%;
-    background-size: 100% 100%, 0% 1.5px;
-    background-clip: text, border-box;
-    -webkit-text-fill-color: transparent;
-    transition: background-size 0.25s ease;
-  }
-
-  a:focus,
-  a:hover {
-    background-image:
-      linear-gradient(90deg, var(--accent-hover), var(--accent-hover-end)),
-      linear-gradient(90deg, var(--accent-hover), var(--accent-hover-end));
-    background-size: 100% 100%, 100% 1.5px;
-  }
-
-  .bio-photo a {
-    background-image: none;
-  }
 }
 
 h2 {
