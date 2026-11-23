@@ -2,6 +2,7 @@
 
     content/home.md       -> index.html
     content/blog/*.md     -> blog/<name>.html and the list on blog/index.html
+    content/misc.md       -> misc/index.html
 
 Output goes to _site/. Run `python build.py` (needs `pip install markdown`).
 """
@@ -129,6 +130,16 @@ def build_home():
     (OUT / "index.html").write_text(page, encoding="utf-8")
 
 
+# ---------- misc ----------
+
+def build_misc():
+    out = OUT / "misc"
+    out.mkdir()
+    body = markdown.markdown(read(CONTENT / "misc.md"), extensions=["tables"])
+    page = read(TEMPLATES / "misc.html").replace("{{body}}", body)
+    (out / "index.html").write_text(page, encoding="utf-8")
+
+
 # ---------- blog ----------
 
 MATH = re.compile(r"\$\$.+?\$\$|(?<![\\$])\$(?!\s)[^$\n]+?(?<!\s)\$", re.S)
@@ -203,5 +214,6 @@ if __name__ == "__main__":
     shutil.copy(ROOT / "stylesheet.css", OUT)
     shutil.copytree(ROOT / "images", OUT / "images")
     build_home()
+    build_misc()
     build_blog()
     print(f"Built site in {OUT}")
