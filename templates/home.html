@@ -94,11 +94,11 @@
     <script>
       // Photo "denoising" animation: on hover (or tap on touch screens) the photo
       // starts as colorful static and is gradually denoised back into the photo,
-      // loosely like a diffusion model's sampler. Skipped for reduced-motion users.
+      // loosely like a diffusion model's sampler.
       (function() {
         var link = document.querySelector('.bio-photo a');
         var img = link && link.querySelector('img');
-        if (!img || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+        if (!img) return;
 
         var canvas = document.createElement('canvas');
         canvas.className = 'denoise';
